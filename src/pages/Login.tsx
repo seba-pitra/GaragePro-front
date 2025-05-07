@@ -1,6 +1,6 @@
 import {useAuthStore} from "../store/auth";
 
-export const Login = () => {
+const Login = () => {
   const login = useAuthStore(state => state.login);
 
   const handleClick = () => {
@@ -14,3 +14,5 @@ export const Login = () => {
     </>
   );
 };
+
+export default Login;
