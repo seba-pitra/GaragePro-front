@@ -1,13 +1,21 @@
 import { useState } from 'react';
-import { useAuthStore } from '../store/auth';
+import { Link } from 'react-router-dom';
+import { useAuthStore } from '@/store/auth';
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 const Login = () => {
   const login = useAuthStore((state) => state.login);
   const [form, setForm] = useState({ email: '', password: '' });
+  const [isVisiblePassword, setIsVisiblePassword] = useState(false);
   const [errors, setErrors] = useState({ email: '', password: '' });
+
+  const handleIsVisiblePassword = () => {
+    setIsVisiblePassword(!isVisiblePassword);
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+
     setForm((prevState) => ({ ...prevState, [name]: value }));
   };
 
@@ -79,14 +87,21 @@ const Login = () => {
         {errors.email && <span className="text-red-600">{errors.email}</span>}
       </div>
 
-      <div className="flex flex-col justify-center items-start w-[70%] max-w-[475px] mx-auto">
+      <div className="relative flex flex-col justify-center items-start w-[70%] max-w-[475px] mx-auto">
         <label htmlFor="password">Password</label>
         <input
           onChange={handleChange}
           name="password"
-          type="password"
+          type={isVisiblePassword ? 'text' : 'password'}
           className="text-black bg-amber-50 w-full h-12 p-2"
         />
+        <div
+          className="cursor-pointer absolute right-[0.75rem] top-[2.2rem]  text-black"
+          onClick={handleIsVisiblePassword}
+        >
+          {!isVisiblePassword && <EyeIcon className="h-6 w-6 text-black" />}
+          {isVisiblePassword && <EyeSlashIcon className="h-6 w-6 text-black" />}
+        </div>
         {errors.password && <span className="text-red-600">{errors.password}</span>}
       </div>
 
@@ -97,6 +112,13 @@ const Login = () => {
       >
         Login
       </button>
+
+      <div className="flex items-center justify-evenly w-[70%] max-w-[475px] max-sm:flex-col max-sm:items-start max-sm:gap-2.5 ">
+        <Link to={'/signup'} className=" text-end">
+          <span className="text-gray-400 max-[187px]:text-[12px]">Create an account</span>
+        </Link>
+        <span className="text-gray-400 cursor-pointer max-[187px]:text-[12px]">Reset password</span>
+      </div>
     </form>
   );
 };
