@@ -3,6 +3,7 @@ import type { ResponseAuthUser, User, UserSignUpForm } from '../interfaces/user.
 import { AUTH_URL } from '../config/constants';
 import { getPropsByCamelCase } from '../utils/getPropsByCamelCase';
 import { persist } from 'zustand/middleware';
+import { UserService } from '@/services/user.service';
 
 interface State {
   user: User;
@@ -11,6 +12,8 @@ interface State {
   login: (email: string, password: string) => Promise<void>;
   signup: (userForm: UserSignUpForm) => Promise<void>;
 }
+
+const userService = new UserService();
 
 export const useAuthStore = create<State>()(
   persist(
@@ -38,20 +41,8 @@ export const useAuthStore = create<State>()(
       },
 
       login: async (email: string, password: string) => {
-        const { data: result } = await fetch(`${AUTH_URL}/login`, {
-          method: 'POST',
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((res) => res.json())
-          .then((data: ResponseAuthUser) => data);
+        const { token, user } = await userService.login(email, password);
 
-        const { token, user } = result;
         const formattedUser = getPropsByCamelCase(user);
 
         set({ token, user: formattedUser });

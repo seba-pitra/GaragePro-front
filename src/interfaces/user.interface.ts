@@ -12,6 +12,25 @@ export enum ValidRoles {
   customer = 'customer',
 }
 
+export interface ResponseUserLogin {
+  ok: boolean;
+  timestamps: Date;
+  data: DataLogin;
+}
+
+export interface DataLogin {
+  user: User;
+  token: string;
+}
+
+export interface UserLogin {
+  first_name: string;
+  last_name: string;
+  email: string;
+  roles: string[];
+  is_regular_customer: boolean;
+}
+
 export interface UserSignUpForm {
   firstName: string;
   lastName: string;
