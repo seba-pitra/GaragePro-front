@@ -22,9 +22,6 @@ const Login = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // TODO: view/hide password
-    // TODO: link to create account
-
     const form = event.currentTarget;
 
     const formData = new FormData(form);
