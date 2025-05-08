@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { useAuthStore } from '../store/auth';
+import { useAuthStore } from '@/store/user';
 import type { ValidRoles } from '@/interfaces/user.interface';
 import type { ReactNode } from 'react';
 

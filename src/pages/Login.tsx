@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuthStore } from '@/store/auth';
+import { useAuthStore } from '@/store/user';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 const Login = () => {
