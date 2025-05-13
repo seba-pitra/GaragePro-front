@@ -4,6 +4,7 @@ import { routes } from './routes/routes';
 import { ProtectedRoute } from './routes/auth.guard';
 import { RoutesWithNotFound } from './helpers/routesWithNotFound';
 import { Suspense } from 'react';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           </RoutesWithNotFound>
         </BrowserRouter>
       </Suspense>
+      <ToastContainer />
     </>
   );
 }
