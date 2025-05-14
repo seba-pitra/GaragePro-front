@@ -40,26 +40,18 @@ export const routes: Route[] = [
     roles: [ValidRoles.customer, ValidRoles.employee, ValidRoles.admin],
   },
   {
-    path: '/reserve',
-    name: 'reserve',
+    path: '/parking/slot',
+    name: 'parkingSlot',
     Component: lazy(
-      () => import(/*webpackChunkName: "Reserve" */ '@/pages/Private/Reserve/Reserve'),
+      () => import(/*webpackChunkName: "Reserve" */ '@/pages/Private/Parking/ReserveSlot'),
     ),
     roles: [ValidRoles.customer, ValidRoles.employee, ValidRoles.admin],
   },
   {
-    path: '/reserve/slot',
-    name: 'reserveSlot',
-    Component: lazy(
-      () => import(/*webpackChunkName: "ReserveSlot" */ '@/pages/Private/Reserve/ReserveSlot'),
-    ),
-    roles: [ValidRoles.customer, ValidRoles.employee, ValidRoles.admin],
-  },
-  {
-    path: '/reserve/date',
+    path: '/parking/date',
     name: 'reserveDate',
     Component: lazy(
-      () => import(/*webpackChunkName: "ReserveDate" */ '@/pages/Private/Reserve/ReserveDate'),
+      () => import(/*webpackChunkName: "ReserveDate" */ '@/pages/Private/Parking/ReserveDate'),
     ),
     roles: [ValidRoles.customer, ValidRoles.employee, ValidRoles.admin],
   },

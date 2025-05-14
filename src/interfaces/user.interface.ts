@@ -12,12 +12,6 @@ export enum ValidRoles {
   customer = 'customer',
 }
 
-export interface ResponseUserLogin {
-  ok: boolean;
-  timestamps: Date;
-  data: DataLogin;
-}
-
 export interface DataLogin {
   user: User;
   token: string;

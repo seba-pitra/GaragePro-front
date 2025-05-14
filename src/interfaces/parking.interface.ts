@@ -1,19 +1,30 @@
+import type { User } from './user.interface';
+
+export interface Reservation {
+  durationInMinutes: number;
+  entryTime: Date;
+  exitTime: Date;
+  basicCost: number;
+  user: User;
+  actualEntryTime: null;
+  actualExitTime: null;
+  penalty: null;
+  totalCost: null;
+  isPaid: null;
+  booking_date: Date;
+  id: string;
+  status: string;
+  createdAt: Date;
+}
+
 export interface ReserveDto {
-  durationInMinutes: string;
   entryTime: Date;
   exitTime: Date;
   slotCode: string;
-  basicCost: string;
-}
-
-export interface ResponseCreateReservation {
-  ok: boolean;
-  timestamps: Date;
-  data: ReservationData;
 }
 
 export interface ReservationData {
-  reservation: Reservation;
+  reservation: ReservationFromBack;
   parking_slot: ParkingSlot;
   id: string;
   created_at: Date;
@@ -25,7 +36,7 @@ export interface ParkingSlot {
   created_at: Date;
 }
 
-export interface Reservation {
+export interface ReservationFromBack {
   duration_in_minutes: number;
   entry_time: Date;
   exit_time: Date;
@@ -39,17 +50,5 @@ export interface Reservation {
   booking_date: Date;
   id: string;
   status: string;
-  created_at: Date;
-}
-
-export interface User {
-  id: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  roles: string[];
-  is_active: boolean;
-  is_regular_customer: boolean;
-  phone: string;
   created_at: Date;
 }
