@@ -36,8 +36,8 @@ export const routes: Route[] = [
     roles: [ValidRoles.customer, ValidRoles.employee, ValidRoles.admin],
   },
   {
-    path: '/vehicles',
-    name: 'vehicles',
+    path: '/create-vehicle',
+    name: 'createVehicles',
     Component: lazy(
       () => import(/*webpackChunkName: "Vehicles" */ '@/presentation/pages/Private/Vehicles'),
     ),

@@ -16,7 +16,6 @@ export const useLogin = () => {
 
     const validationErrors = { email: emailError, password: passwordError };
 
-    console.log(validateEmail);
     setErrors(validationErrors);
 
     if (emailError || passwordError) return;

@@ -1,9 +1,9 @@
 import { create } from 'zustand';
+import { toast } from 'react-toastify';
 import type { User, UserSignUpForm } from '../interfaces/user.interface';
 import { getPropsByCamelCase } from '../utils/getPropsByCamelCase';
 import { persist } from 'zustand/middleware';
 import { UserService } from '@/services/user.service';
-import { toast } from 'react-toastify';
 
 interface State {
   user: User;
@@ -28,6 +28,7 @@ export const useUserStore = create<State>()(
       token: '',
 
       logout: () => {
+        localStorage.removeItem('auth');
         set({
           user: {
             email: '',
@@ -43,7 +44,7 @@ export const useUserStore = create<State>()(
       login: async (email: string, password: string) => {
         const { token, user } = await userService.login(email, password);
 
-        const formattedUser = getPropsByCamelCase(user);
+        const formattedUser = getPropsByCamelCase(user) as User;
 
         set({ token, user: formattedUser });
 
@@ -53,7 +54,7 @@ export const useUserStore = create<State>()(
       signUp: async (userForm: UserSignUpForm) => {
         const { token, user } = await userService.signUp(userForm);
 
-        const formattedUser = getPropsByCamelCase(user);
+        const formattedUser = getPropsByCamelCase(user) as User;
 
         set({ token, user: formattedUser });
 
