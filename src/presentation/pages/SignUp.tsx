@@ -25,7 +25,7 @@ const SignUp = () => {
 
     await signUp(form);
 
-    navigate('/home');
+    navigate('/');
   };
 
   return (

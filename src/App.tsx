@@ -5,6 +5,8 @@ import { ProtectedRoute } from './presentation/routes/auth.guard';
 import { RoutesWithNotFound } from './presentation/routes/routesWithNotFound';
 import { Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
+import { Nav } from './presentation/components/Nav';
+import { Footer } from './presentation/components/Footer';
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
                 path={path}
                 element={
                   <ProtectedRoute roles={roles}>
+                    <Nav />
                     <Component />
+                    <Footer />
                   </ProtectedRoute>
                 }
               />

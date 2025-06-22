@@ -13,7 +13,11 @@ export const useSignUp = () => {
   });
 
   const runSignUp = async (form: EventTarget & HTMLFormElement) => {
-    const { firstName, lastName, email, password, repeatedPassword } = form;
+    const firstName = form.firstName;
+    const lastName = form.lastName;
+    const email = form.email;
+    const password = form.password;
+    const repeatedPassword = form.repeatedPassword;
 
     const validationErrors = {
       firstName: validateName(firstName, 'first name'),

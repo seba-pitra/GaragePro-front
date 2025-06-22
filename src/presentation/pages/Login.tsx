@@ -25,7 +25,7 @@ const Login = () => {
 
     await login(form);
 
-    navigate('/home');
+    navigate('/');
   };
 
   return (
