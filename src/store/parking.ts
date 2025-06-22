@@ -11,7 +11,7 @@ interface State {
   slots: Slot[];
   times: AvailableTime[];
   reserve: (reserveDto: ReserveDto) => Promise<void>;
-  getAvailableTimes: (date: string) => Promise<void>;
+  getAvailableTimes: (date: string, selectedSlot: string) => Promise<void>;
 }
 
 const parkingService = new ParkingService();
@@ -32,9 +32,8 @@ export const useParkingStore = create<State>()(
         toast('Reserve created', { type: 'success', theme: 'dark', position: 'bottom-left' });
       },
 
-      getAvailableTimes: async (date: string) => {
-        const times = await parkingService.getAvailableTimes(date);
-
+      getAvailableTimes: async (date: string, selectedSlot: string) => {
+        const times = await parkingService.getAvailableTimes(date, selectedSlot);
         set({ times });
       },
     }),

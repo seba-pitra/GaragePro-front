@@ -35,10 +35,10 @@ export class ParkingService {
     return reservation;
   }
 
-  async getAvailableTimes(date: string): Promise<AvailableTime[]> {
-    const { data } = (await this.fetchApi.get(`/available-times?date=${date}`)) as ResponseApi<
-      AvailableTime[]
-    >;
+  async getAvailableTimes(date: string, selectedSlot: string) {
+    const { data } = (await this.fetchApi.get(
+      `/available-times?date=${date}&slot=${selectedSlot}`,
+    )) as ResponseApi<AvailableTime[]>;
 
     return data;
   }

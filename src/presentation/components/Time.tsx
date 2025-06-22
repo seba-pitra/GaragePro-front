@@ -8,7 +8,6 @@ interface Props {
 export const Time: React.FC<Props> = ({ start, end, isSelected, onClick }) => {
   const selectedClass = isSelected ? 'bg-red-600' : '';
 
-  console.log({ selectedClass });
   return (
     <div
       onClick={onClick}

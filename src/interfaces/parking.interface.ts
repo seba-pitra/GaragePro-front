@@ -18,8 +18,10 @@ export interface Reservation {
 }
 
 export interface ReserveDto {
-  entryTime: Date;
-  exitTime: Date;
+  entryDate: string;
+  exitDate: string;
+  entryHour: string;
+  exitHour: string;
   slotCode: string;
 }
 
