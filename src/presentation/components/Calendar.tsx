@@ -10,6 +10,7 @@ interface Props {
 export const MyCalentar: React.FC<Props> = ({ selectedDate, onChange }) => {
   const [datesToCalendar] = useState(() => {
     const today = new Date();
+    today.setHours(today.getHours() + 24);
     const nextWeek = new Date();
     nextWeek.setDate(today.getDate() + 7);
     return { minDate: today, maxDate: nextWeek };

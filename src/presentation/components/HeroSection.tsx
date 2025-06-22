@@ -1,8 +1,11 @@
 import garageImg from '@/assets/garagepro.png';
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
+import { useLogin } from '@/hooks/useLogin';
 
 export const HeroSection = () => {
+  const { user } = useLogin();
+
   return (
     <section className="flex flex-col-reverse lg:flex-row items-center justify-center px-6 md:px-8 py-16 lg:py-20 flex-grow animate-fade-in gap-12 lg:gap-24">
       <div className="max-w-xl text-center lg:text-left">
@@ -13,7 +16,8 @@ export const HeroSection = () => {
           GaragePro is your local go-to for secure, fast, and convenient parking. Located in the
           heart of the city, we make finding a spot stress-free.
         </p>
-        <Link to="/parking">
+
+        <Link to={user.email ? '/parking' : '/login'}>
           <Button className="text-base sm:text-lg px-6 py-3">Book a Spot</Button>
         </Link>
       </div>

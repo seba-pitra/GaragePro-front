@@ -22,9 +22,12 @@ export const useLogin = () => {
 
     setErrors(validationErrors);
 
+    console.log({ emailError, passwordError });
     if (emailError || passwordError) return;
 
     await login(email, password);
+
+    navigate('/');
   };
 
   const handleIsVisiblePassword = () => {

@@ -47,8 +47,7 @@ export const routes: Route[] = [
     path: '/parking',
     name: 'Parking',
     Component: lazy(
-      () =>
-        import(/*webpackChunkName: "Reserve" */ '@/presentation/pages/Private/Parking/ReserveSlot'),
+      () => import(/*webpackChunkName: "Reserve" */ '@/presentation/pages/Private/Parking'),
     ),
     roles: [ValidRoles.customer, ValidRoles.employee, ValidRoles.admin],
   },

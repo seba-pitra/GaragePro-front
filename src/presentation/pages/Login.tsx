@@ -4,12 +4,22 @@ import { useLogin } from '@/hooks/useLogin';
 import { Input } from '@/presentation/components/Input';
 
 const Login = () => {
-  const { errors, handleSubmit, handleChange, handleIsVisiblePassword, isVisiblePassword, form } =
+  const { errors, handleChange, handleIsVisiblePassword, isVisiblePassword, form, login } =
     useLogin();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    await login();
+  };
 
   return (
     <form
       onSubmit={handleSubmit}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+        }
+      }}
       className="flex  justify-center items-center flex-col  w-full h-[100vh] gap-4.5"
     >
       <Input
