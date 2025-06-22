@@ -1,5 +1,5 @@
 import type { CalendarValue } from '@/hooks/useReserveSlot';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Calendar from 'react-calendar';
 
 interface Props {
@@ -15,10 +15,6 @@ export const MyCalentar: React.FC<Props> = ({ selectedDate, onChange }) => {
     nextWeek.setDate(today.getDate() + 7);
     return { minDate: today, maxDate: nextWeek };
   });
-
-  useEffect(() => {
-    console.log(selectedDate);
-  }, [selectedDate]);
 
   return (
     <Calendar

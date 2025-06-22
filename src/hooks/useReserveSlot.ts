@@ -10,7 +10,6 @@ export const useReserveSlot = () => {
   const navigate = useNavigate();
 
   const [selectedSlot, setSelectedSlot] = useState('');
-  // const [selectedDate, setSelectedDate] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedTime, setSelectedTime] = useState({ start: '', end: '' });
 

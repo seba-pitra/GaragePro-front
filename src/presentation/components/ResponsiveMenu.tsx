@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { routes } from '../routes/routes';
-import { Menu } from 'lucide-react'; // O cualquier icono, puedes usar HeroIcons o un SVG
+import { Menu } from 'lucide-react';
 
 export default function ResponsiveMenu() {
   const [isOpen, setIsOpen] = useState(false);
