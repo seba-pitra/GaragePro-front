@@ -1,4 +1,4 @@
-import type { Reservation, ReserveDto } from '@/interfaces/parking.interface';
+import type { AvailableTime, Reservation, ReserveDto } from '@/interfaces/parking.interface';
 import type { Slot } from '@/interfaces/slot.interface';
 import { ParkingService } from '@/services/parking.service';
 import { getPropsByCamelCase } from '@/utils/getPropsByCamelCase';
@@ -9,7 +9,9 @@ import { persist } from 'zustand/middleware';
 interface State {
   reservation: Reservation | null;
   slots: Slot[];
+  times: AvailableTime[];
   reserve: (reserveDto: ReserveDto) => Promise<void>;
+  getAvailableTimes: (date: string) => Promise<void>;
 }
 
 const parkingService = new ParkingService();
@@ -18,6 +20,7 @@ export const useParkingStore = create<State>()(
   persist(
     (set) => ({
       reservation: null,
+      times: [],
       slots: [],
 
       reserve: async (reserveDto: ReserveDto) => {
@@ -27,6 +30,12 @@ export const useParkingStore = create<State>()(
         set({ reservation });
 
         toast('Reserve created', { type: 'success', theme: 'dark', position: 'bottom-left' });
+      },
+
+      getAvailableTimes: async (date: string) => {
+        const times = await parkingService.getAvailableTimes(date);
+
+        set({ times });
       },
     }),
 

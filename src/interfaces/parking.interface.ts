@@ -52,3 +52,8 @@ export interface ReservationFromBack {
   status: string;
   created_at: Date;
 }
+
+export interface AvailableTime {
+  start: string;
+  end: string;
+}
