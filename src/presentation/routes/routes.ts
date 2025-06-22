@@ -44,22 +44,11 @@ export const routes: Route[] = [
     roles: [ValidRoles.customer, ValidRoles.employee, ValidRoles.admin],
   },
   {
-    path: '/parking/slot',
-    name: 'parkingSlot',
+    path: '/parking',
+    name: 'parking',
     Component: lazy(
       () =>
         import(/*webpackChunkName: "Reserve" */ '@/presentation/pages/Private/Parking/ReserveSlot'),
-    ),
-    roles: [ValidRoles.customer, ValidRoles.employee, ValidRoles.admin],
-  },
-  {
-    path: '/parking/date',
-    name: 'reserveDate',
-    Component: lazy(
-      () =>
-        import(
-          /*webpackChunkName: "ReserveDate" */ '@/presentation/pages/Private/Parking/ReserveDate'
-        ),
     ),
     roles: [ValidRoles.customer, ValidRoles.employee, ValidRoles.admin],
   },

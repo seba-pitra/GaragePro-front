@@ -2,6 +2,19 @@ import { MyCalentar } from '@/presentation/components/Calendar';
 import { Slot } from '@/presentation/components/Slot';
 import { Time } from '@/presentation/components/Time';
 import { useReserveSlot } from '@/hooks/useReserveSlot';
+import { Button } from '@/presentation/components/Button';
+
+const groupSlotsByRow = (slots: { slotCode: string }[]) => {
+  const grouped: Record<string, { slotCode: string }[]> = {};
+
+  slots.forEach((slot) => {
+    const row = slot.slotCode[0];
+    if (!grouped[row]) grouped[row] = [];
+    grouped[row].push(slot);
+  });
+
+  return grouped;
+};
 
 const ReserveSlot = () => {
   const {
@@ -16,36 +29,55 @@ const ReserveSlot = () => {
     handleSubmit,
   } = useReserveSlot();
 
+  const groupedSlots = groupSlotsByRow(slots);
+
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid grid-cols-8 max-[1140px]:grid-cols-4 max-[940px]:grid-cols-3 max-[700px]:grid-cols-2 max-[515px]:grid-cols-1 gap-4"
+      className="min-h-screen bg-[#2e3a47] text-white flex flex-col items-center px-4 py-8"
     >
-      <MyCalentar selectedDate={selectedDate} onChange={handleDateChange} />
+      {/* Calendar */}
+      <div className="mb-8">
+        <MyCalentar selectedDate={selectedDate} onChange={handleDateChange} />
+      </div>
 
-      {slots.map(({ slotCode }) => (
-        <Slot
-          isSelected={selectedSlot === slotCode}
-          key={slotCode}
-          code={slotCode}
-          onClick={() => handleSelectSlot(slotCode)}
-        />
-      ))}
+      {/* Slots */}
+      <div className="flex flex-col md:flex-row gap-12 w-full max-w-[1000px] justify-center">
+        <div className="flex flex-col gap-6">
+          {Object.keys(groupedSlots)
+            .sort()
+            .map((row) => (
+              <div key={row} className="flex gap-4 justify-center md:justify-start">
+                {groupedSlots[row].map(({ slotCode }) => (
+                  <Slot
+                    key={slotCode}
+                    code={slotCode}
+                    isSelected={selectedSlot === slotCode}
+                    onClick={() => handleSelectSlot(slotCode)}
+                  />
+                ))}
+              </div>
+            ))}
+        </div>
 
-      {times.length &&
-        times.map(({ start, end }) => (
-          <Time
-            start={start}
-            end={end}
-            onClick={() => handleSelectTime(start, end)}
-            key={start + end + selectedDate}
-            isSelected={selectedTime.start === start}
-          />
-        ))}
+        {/* Times */}
+        {selectedSlot && times.length > 0 && (
+          <div className="flex flex-col gap-4 items-center md:items-start w-full md:w-auto">
+            {times.map(({ start, end }) => (
+              <Time
+                key={start + end}
+                start={start}
+                end={end}
+                onClick={() => handleSelectTime(start, end)}
+                isSelected={selectedTime.start === start}
+              />
+            ))}
+          </div>
+        )}
+      </div>
 
-      <button type="submit" className="bg-black rounded-2xl text-4xl">
-        Reserve
-      </button>
+      {/* Button */}
+      {selectedSlot && selectedTime.start && <Button content="Reserve" />}
     </form>
   );
 };

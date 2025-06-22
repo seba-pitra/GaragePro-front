@@ -6,14 +6,17 @@ interface Props {
 }
 
 export const Time: React.FC<Props> = ({ start, end, isSelected, onClick }) => {
-  const selectedClass = isSelected ? 'bg-red-600' : '';
-
   return (
     <div
       onClick={onClick}
-      className={selectedClass + ' border-amber-50 border-solid border-2 flex w-fit cursor-pointer'}
+      className={`w-40 px-4 py-2 rounded-md border-2 font-semibold text-center cursor-pointer transition-all
+    ${
+      isSelected
+        ? 'bg-yellow-400 text-black border-yellow-400'
+        : 'border-white text-white hover:bg-white hover:text-black'
+    }`}
     >
-      <p>{start}</p> -<p>{end}</p>
+      {start} - {end}
     </div>
   );
 };
