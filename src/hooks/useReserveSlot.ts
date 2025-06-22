@@ -10,7 +10,8 @@ export const useReserveSlot = () => {
   const navigate = useNavigate();
 
   const [selectedSlot, setSelectedSlot] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
+  // const [selectedDate, setSelectedDate] = useState('');
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedTime, setSelectedTime] = useState({ start: '', end: '' });
 
   const slots = useSlotStore((state) => state.slots);
@@ -25,10 +26,12 @@ export const useReserveSlot = () => {
   }, [getSlots]);
 
   const handleSelectSlot = (slot: string) => {
-    setSelectedSlot(slot);
-
     const currentDate = new Date().toISOString().split('T')[0];
-    getAvailableTimes(selectedDate || currentDate, selectedSlot);
+    const date = selectedDate || currentDate;
+    const formattedDate = new Date(date as Date).toISOString().split('T')[0];
+
+    setSelectedSlot(slot);
+    getAvailableTimes(formattedDate, slot);
   };
 
   const handleSelectTime = (start: string, end: string) => {
@@ -36,8 +39,9 @@ export const useReserveSlot = () => {
   };
 
   const handleDateChange = (date: CalendarValue) => {
-    const formattedDate = new Date(date as Date).toISOString().split('T')[0];
-    setSelectedDate(formattedDate);
+    const actualDate = date as Date;
+    setSelectedDate(actualDate);
+    const formattedDate = actualDate.toISOString().split('T')[0];
     getAvailableTimes(formattedDate, selectedSlot);
   };
 
@@ -49,13 +53,15 @@ export const useReserveSlot = () => {
       return;
     }
 
+    const formattedDate = new Date(selectedDate).toISOString().split('T')[0];
+
     createReservation({
       entryHour: selectedTime.start,
       exitHour: selectedTime.end,
-      entryDate: selectedDate,
-      exitDate: selectedDate,
+      entryDate: formattedDate,
+      exitDate: formattedDate,
       slotCode: selectedSlot,
-    }).then(() => navigate('/home', { replace: true }));
+    }).then(() => navigate('/', { replace: true }));
   };
 
   return {

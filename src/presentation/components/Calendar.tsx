@@ -1,9 +1,9 @@
-import type { CalendarValue } from '@/pages/Private/Parking/ReserveSlot';
-import { useState } from 'react';
+import type { CalendarValue } from '@/hooks/useReserveSlot';
+import { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 
 interface Props {
-  selectedDate: CalendarValue;
+  selectedDate: Date;
   onChange: (value: CalendarValue, event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -14,6 +14,10 @@ export const MyCalentar: React.FC<Props> = ({ selectedDate, onChange }) => {
     nextWeek.setDate(today.getDate() + 7);
     return { minDate: today, maxDate: nextWeek };
   });
+
+  useEffect(() => {
+    console.log(selectedDate);
+  }, [selectedDate]);
 
   return (
     <Calendar

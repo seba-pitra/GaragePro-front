@@ -13,23 +13,23 @@ export const routes: Route[] = [
     path: '/',
     Component: lazy(() => import(/*webpackChunkName: "Home" */ '@/presentation/pages/Home')),
     roles: [],
-    name: 'home',
+    name: 'Home',
   },
   {
     path: '/login',
-    name: 'login',
+    name: 'Login',
     Component: lazy(() => import(/*webpackChunkName: "Login" */ '@/presentation/pages/Login')),
     roles: [],
   },
   {
     path: '/signup',
-    name: 'signup',
+    name: 'Sign Up',
     Component: lazy(() => import(/*webpackChunkName: "SignUp" */ '@/presentation/pages/SignUp')),
     roles: [],
   },
   {
     path: '/profile',
-    name: 'profile',
+    name: 'Profile',
     Component: lazy(
       () => import(/*webpackChunkName: "Profile" */ '@/presentation/pages/Private/Profile'),
     ),
@@ -37,7 +37,7 @@ export const routes: Route[] = [
   },
   {
     path: '/create-vehicle',
-    name: 'createVehicles',
+    name: 'Create Vehicles',
     Component: lazy(
       () => import(/*webpackChunkName: "Vehicles" */ '@/presentation/pages/Private/Vehicles'),
     ),
@@ -45,20 +45,11 @@ export const routes: Route[] = [
   },
   {
     path: '/parking',
-    name: 'parking',
+    name: 'Parking',
     Component: lazy(
       () =>
         import(/*webpackChunkName: "Reserve" */ '@/presentation/pages/Private/Parking/ReserveSlot'),
     ),
     roles: [ValidRoles.customer, ValidRoles.employee, ValidRoles.admin],
-  },
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    Component: lazy(
-      () =>
-        import(/*webpackChunkName: "Dashboard" */ '@/presentation/pages/Private/Admin/Dashboard'),
-    ),
-    roles: [ValidRoles.admin],
   },
 ];
