@@ -11,15 +11,15 @@ const SignUp = () => {
 
     await signUp();
 
-    const form = event.currentTarget;
-    form.reset();
-
     navigate('/');
   };
 
   return (
     <form
       onSubmit={handleSubmit}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') e.preventDefault();
+      }}
       className="flex  justify-center items-center flex-col  w-full h-[100vh] gap-4.5"
     >
       <Input
@@ -79,7 +79,6 @@ const SignUp = () => {
         <Link to={'/login'} className=" text-end">
           <span className="text-gray-400 max-[187px]:text-[12px]">Back to Login</span>
         </Link>
-        <span className="text-gray-400 cursor-pointer max-[187px]:text-[12px]">Reset password</span>
       </div>
     </form>
   );

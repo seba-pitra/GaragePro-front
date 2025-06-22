@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export const useLogin = () => {
   const user = useUserStore((state) => state.user);
   const login = useUserStore((state) => state.login);
+  const logout = useUserStore((state) => state.logout);
   const [errors, setErrors] = useState({ email: '', password: '' });
   const [form, setForm] = useState({ email: '', password: '' });
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
@@ -22,12 +23,15 @@ export const useLogin = () => {
 
     setErrors(validationErrors);
 
-    console.log({ emailError, passwordError });
     if (emailError || passwordError) return;
 
     await login(email, password);
 
     navigate('/');
+  };
+
+  const handleLogout = () => {
+    logout();
   };
 
   const handleIsVisiblePassword = () => {
@@ -51,13 +55,14 @@ export const useLogin = () => {
   };
 
   return {
-    user,
+    errors,
+    form,
     handleChange,
     handleIsVisiblePassword,
-    isVisiblePassword,
     handleSubmit,
-    form,
-    errors,
+    isVisiblePassword,
     login: runLogin,
+    logout: handleLogout,
+    user,
   };
 };

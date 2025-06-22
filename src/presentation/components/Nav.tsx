@@ -4,7 +4,7 @@ import { useLogin } from '@/hooks/useLogin';
 import { routes } from '../routes/routes';
 
 export const Nav = () => {
-  const { user } = useLogin();
+  const { user, logout } = useLogin();
 
   return (
     <nav className="max-sm:hidden flex items-center justify-between flex-wrap p-4 border-b border-white/10">
@@ -42,7 +42,14 @@ export const Nav = () => {
                 </Link>
               </li>
             ))}
-          {/* <Link to="/profile">Profile</Link> */}
+          <li>
+            <Button
+              onClick={logout}
+              className="block w-full text-gray-50 bg-transparent text-[18px] pb-2 hover:text-[#535bf2]"
+            >
+              Logout
+            </Button>
+          </li>
         </ul>
       )}
     </nav>
