@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { MyCalentar } from '@/components/Calendar';
-import { Slot } from '@/components/Slot';
+import { MyCalentar } from '@/presentation/components/Calendar';
+import { Slot } from '@/presentation/components/Slot';
 import { useParkingStore } from '@/store/parking';
 import { useSlotStore } from '@/store/slot';
-import { Time } from '@/components/Time';
+import { Time } from '@/presentation/components/Time';
 
 export type CalendarValuePiece = Date | null;
 export type CalendarValue = CalendarValuePiece | [CalendarValuePiece, CalendarValuePiece];

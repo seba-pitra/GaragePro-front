@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { useLogin } from '@/hooks/useLogin';
-import { Input } from '@/components/Input';
+import { Input } from '@/presentation/components/Input';
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });

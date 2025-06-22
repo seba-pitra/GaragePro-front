@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSignUp } from '@/hooks/useSignUp';
-import { Input } from '@/components/Input';
+import { Input } from '@/presentation/components/Input';
 
 const SignUp = () => {
   const [form, setForm] = useState({

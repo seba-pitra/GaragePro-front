@@ -1,8 +1,8 @@
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
-import { routes } from './routes/routes';
-import { ProtectedRoute } from './routes/auth.guard';
-import { RoutesWithNotFound } from './helpers/routesWithNotFound';
+import { routes } from './presentation/routes/routes';
+import { ProtectedRoute } from './presentation/routes/auth.guard';
+import { RoutesWithNotFound } from './presentation/routes/routesWithNotFound';
 import { Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 
