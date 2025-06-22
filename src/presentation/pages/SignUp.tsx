@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSignUp } from '@/hooks/useSignUp';
-import { Input } from '@/components/Input';
+import { Input } from '@/presentation/components/Input';
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -11,7 +11,7 @@ const SignUp = () => {
     password: '',
     repeatedPassword: '',
   });
-  const { errors, signUp } = useSignUp(form);
+  const { errors, signUp } = useSignUp();
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

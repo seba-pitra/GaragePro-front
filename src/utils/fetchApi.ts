@@ -13,6 +13,9 @@ export class FetchApi {
     });
   }
 
+  getInterceptors() {
+    return this.fetchApi.interceptors;
+  }
   async get<T>(url: string): Promise<T | undefined> {
     try {
       const { data } = await this.fetchApi.get(url);

@@ -1,4 +1,4 @@
-export function getPropsByCamelCase(object: {[key: string]: any}) {
+export function getPropsByCamelCase(object: { [key: string]: any }) {
   const propsToUpdate = {} as any;
 
   for (const [key, value] of Object.entries(object)) {
@@ -9,11 +9,8 @@ export function getPropsByCamelCase(object: {[key: string]: any}) {
         const currentCharacter = key[i];
         const nextCharacter = key[i];
 
-        if (currentCharacter === "_") {
-          newKey = newKey.replace(
-            currentCharacter,
-            nextCharacter.toUpperCase()
-          );
+        if (currentCharacter === '_') {
+          newKey = newKey.replace(currentCharacter, nextCharacter.toUpperCase());
         }
       }
 

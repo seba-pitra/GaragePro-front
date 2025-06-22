@@ -1,5 +1,6 @@
 import { env } from '@/config/env.config';
-import type { DataLogin, ResponseUserLogin, UserSignUpForm } from '@/interfaces/user.interface';
+import type { ResponseApi } from '@/interfaces/api.interface';
+import type { DataLogin, UserSignUpForm } from '@/interfaces/user.interface';
 import { FetchApi } from '@/utils/fetchApi';
 
 export class UserService {
@@ -10,7 +11,10 @@ export class UserService {
   }
 
   async login(email: string, password: string): Promise<DataLogin> {
-    const { data } = (await this.fetchApi.post('/login', { email, password })) as ResponseUserLogin;
+    const { data } = (await this.fetchApi.post('/login', {
+      email,
+      password,
+    })) as ResponseApi<DataLogin>;
 
     const { user, token } = data;
 
@@ -18,7 +22,7 @@ export class UserService {
   }
 
   async signUp(userParam: UserSignUpForm): Promise<DataLogin> {
-    const { data } = (await this.fetchApi.post('/register', userParam)) as ResponseUserLogin;
+    const { data } = (await this.fetchApi.post('/register', userParam)) as ResponseApi<DataLogin>;
 
     const { user, token } = data;
 
