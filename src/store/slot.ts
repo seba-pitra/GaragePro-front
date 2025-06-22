@@ -1,7 +1,7 @@
-import type { Slot } from '@/interfaces/slot.interface';
-import { SlotService } from '@/services/slot.service';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import type { Slot } from '@/interfaces/slot.interface';
+import { SlotService } from '@/services/slot.service';
 
 interface State {
   slots: Slot[];

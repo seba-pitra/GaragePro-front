@@ -1,10 +1,10 @@
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+import { toast } from 'react-toastify';
 import type { AvailableTime, Reservation, ReserveDto } from '@/interfaces/parking.interface';
 import type { Slot } from '@/interfaces/slot.interface';
 import { ParkingService } from '@/services/parking.service';
 import { getPropsByCamelCase } from '@/utils/getPropsByCamelCase';
-import { toast } from 'react-toastify';
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 
 interface State {
   reservation: Reservation | null;
