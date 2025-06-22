@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export const useVehicle = () => {
   const navigate = useNavigate();
   const createVehicle = useVehiclesStore((state) => state.createVehicle);
+  const deleteVehicle = useVehiclesStore((state) => state.deleteVehicle);
   const getVehiclesByUserEmail = useVehiclesStore((state) => state.getVehiclesByUserEmail);
   const userVehicles = useVehiclesStore((state) => state.userVehicles);
 
@@ -44,13 +45,17 @@ export const useVehicle = () => {
     navigate('/profile');
   };
 
+  const handleDeleteVehicle = (plateNumber: string) => {
+    deleteVehicle(plateNumber);
+  };
+
   return {
     userVehicles,
-    createVehicle,
     getVehiclesByUserEmail,
     errors,
     form,
     handleChange,
     handleCreateVehicle,
+    handleDeleteVehicle,
   };
 };

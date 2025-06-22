@@ -45,7 +45,7 @@ export class FetchApi {
 
   async delete<T>(url: string): Promise<T | undefined> {
     try {
-      const { data } = await this.fetchApi.get(url);
+      const { data } = await this.fetchApi.delete(url);
       return data;
     } catch (error) {
       console.log(error);

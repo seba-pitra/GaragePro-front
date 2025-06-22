@@ -35,4 +35,12 @@ export class VehicleService {
 
     return newVehicle;
   }
+
+  async deleteVehicle(plate: string) {
+    const { data } = (await this.fetchApi.delete(`/${plate}`)) as ResponseApi<VehicleResponseApi>;
+
+    const { vehicles: newVehicle } = data;
+
+    return newVehicle;
+  }
 }
