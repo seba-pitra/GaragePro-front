@@ -13,7 +13,7 @@ export const HeroSection = () => {
           GaragePro is your local go-to for secure, fast, and convenient parking. Located in the
           heart of the city, we make finding a spot stress-free.
         </p>
-        <Link to="/reserve">
+        <Link to="/parking">
           <Button className="text-base sm:text-lg px-6 py-3">Book a Spot</Button>
         </Link>
       </div>

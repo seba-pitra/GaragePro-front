@@ -1,29 +1,18 @@
-import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSignUp } from '@/hooks/useSignUp';
 import { Input } from '@/presentation/components/Input';
 
 const SignUp = () => {
-  const [form, setForm] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    repeatedPassword: '',
-  });
-  const { errors, signUp } = useSignUp();
+  const { errors, form, handleChange, signUp } = useSignUp();
   const navigate = useNavigate();
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setForm((prevState) => ({ ...prevState, [name]: value }));
-  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = event.currentTarget;
 
-    await signUp(form);
+    await signUp();
+
+    const form = event.currentTarget;
+    form.reset();
 
     navigate('/');
   };
