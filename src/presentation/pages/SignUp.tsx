@@ -11,7 +11,7 @@ const SignUp = () => {
     password: '',
     repeatedPassword: '',
   });
-  const { errors, signUp } = useSignUp(form);
+  const { errors, signUp } = useSignUp();
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

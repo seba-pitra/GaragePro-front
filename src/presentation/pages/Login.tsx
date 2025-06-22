@@ -7,7 +7,7 @@ import { Input } from '@/presentation/components/Input';
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
-  const { errors, login } = useLogin(form);
+  const { errors, login } = useLogin();
   const navigate = useNavigate();
 
   const handleIsVisiblePassword = () => {
