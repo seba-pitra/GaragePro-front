@@ -1,36 +1,23 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { useLogin } from '@/hooks/useLogin';
 import { Input } from '@/presentation/components/Input';
 
 const Login = () => {
-  const [form, setForm] = useState({ email: '', password: '' });
-  const [isVisiblePassword, setIsVisiblePassword] = useState(false);
-  const { errors, login } = useLogin();
-  const navigate = useNavigate();
-
-  const handleIsVisiblePassword = () => {
-    setIsVisiblePassword(!isVisiblePassword);
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setForm((prevState) => ({ ...prevState, [name]: value }));
-  };
+  const { errors, handleChange, handleIsVisiblePassword, isVisiblePassword, form, login } =
+    useLogin();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = event.currentTarget;
-
-    await login(form);
-
-    navigate('/');
+    await login();
   };
 
   return (
     <form
       onSubmit={handleSubmit}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') e.preventDefault();
+      }}
       className="flex  justify-center items-center flex-col  w-full h-[100vh] gap-4.5"
     >
       <Input
@@ -72,7 +59,6 @@ const Login = () => {
         <Link to={'/signup'} className=" text-end">
           <span className="text-gray-400 max-[187px]:text-[12px]">Create an account</span>
         </Link>
-        <span className="text-gray-400 cursor-pointer max-[187px]:text-[12px]">Reset password</span>
       </div>
     </form>
   );

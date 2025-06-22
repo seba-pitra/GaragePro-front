@@ -7,6 +7,7 @@ import { Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { Nav } from './presentation/components/Nav';
 import { Footer } from './presentation/components/Footer';
+import ResponsiveMenu from './presentation/components/ResponsiveMenu';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                 element={
                   <ProtectedRoute roles={roles}>
                     <Nav />
+                    <ResponsiveMenu />
                     <Component />
                     <Footer />
                   </ProtectedRoute>

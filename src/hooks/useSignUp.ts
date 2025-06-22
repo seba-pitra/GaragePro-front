@@ -4,6 +4,13 @@ import { validateEmail, validateName, validatePassword } from '@/utils/validatio
 
 export const useSignUp = () => {
   const signUp = useUserStore((state) => state.signUp);
+  const [form, setForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    repeatedPassword: '',
+  });
   const [errors, setErrors] = useState({
     firstName: '',
     lastname: '',
@@ -12,7 +19,7 @@ export const useSignUp = () => {
     repeatedPassword: '',
   });
 
-  const runSignUp = async (form: EventTarget & HTMLFormElement) => {
+  const runSignUp = async () => {
     const firstName = form.firstName;
     const lastName = form.lastName;
     const email = form.email;
@@ -38,12 +45,17 @@ export const useSignUp = () => {
       lastName,
       password,
     });
+  };
 
-    form.reset();
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setForm((prevState) => ({ ...prevState, [name]: value }));
   };
 
   return {
     errors,
+    handleChange,
+    form,
     signUp: runSignUp,
   };
 };

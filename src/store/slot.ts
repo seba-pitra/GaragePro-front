@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 import type { Slot } from '@/interfaces/slot.interface';
 import { SlotService } from '@/services/slot.service';
 
@@ -10,25 +9,17 @@ interface State {
 
 const slotService = new SlotService();
 
-export const useSlotStore = create<State>()(
-  persist(
-    (set) => ({
-      slots: [],
+export const useSlotStore = create<State>()((set) => ({
+  slots: [],
 
-      getSlots: async (limit?: number, offset?: number) => {
-        const slotsFromBack = await slotService.getSlots(limit, offset);
-        const resultSlots: Slot[] = [];
+  getSlots: async (limit?: number, offset?: number) => {
+    const slotsFromBack = await slotService.getSlots(limit, offset);
+    const resultSlots: Slot[] = [];
 
-        for (const slot of slotsFromBack) {
-          resultSlots.push({ slotCode: slot.slot_code });
-        }
+    for (const slot of slotsFromBack) {
+      resultSlots.push({ slotCode: slot.slot_code });
+    }
 
-        set({ slots: resultSlots });
-      },
-    }),
-
-    {
-      name: 'parking',
-    },
-  ),
-);
+    set({ slots: resultSlots });
+  },
+}));

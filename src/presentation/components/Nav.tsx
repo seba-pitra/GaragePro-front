@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import { useLogin } from '@/hooks/useLogin';
+import { routes } from '../routes/routes';
 
 export const Nav = () => {
-  const { user } = useLogin();
+  const { user, logout } = useLogin();
 
   return (
-    <nav className="flex items-center justify-between flex-wrap p-4 border-b border-white/10">
+    <nav className="max-sm:hidden flex items-center justify-between flex-wrap p-4 border-b border-white/10">
       <Link to="/">
         <h1 className="text-2xl text-amber-50 font-bold">GaragePro</h1>
       </Link>
@@ -25,7 +26,31 @@ export const Nav = () => {
           </Link>
         </div>
       ) : (
-        <Link to="/profile">Profile</Link>
+        <ul className="flex gap-4">
+          {routes
+            .filter(
+              (route) =>
+                !route.path.includes('login') &&
+                !route.path.includes('signup') &&
+                !route.path.includes('login') &&
+                !route.path.includes('create-vehicle'),
+            )
+            .map((route) => (
+              <li key={route.name + '-nav'}>
+                <Link to={route.path || '/'} className="block w-full text-gray-50  pb-2">
+                  {route.name}
+                </Link>
+              </li>
+            ))}
+          <li>
+            <Button
+              onClick={logout}
+              className="block w-full text-gray-50 bg-transparent text-[18px] pb-2 hover:text-[#535bf2]"
+            >
+              Logout
+            </Button>
+          </li>
+        </ul>
       )}
     </nav>
   );

@@ -17,7 +17,7 @@ const Profile = () => {
   }, [getVehiclesByUserEmail, user.email]);
 
   return (
-    <main className="min-h-screen bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <main className="mt-12 min-h-screen bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
       <UserProfile
         email={user.email}
         firstName={user.firstName}

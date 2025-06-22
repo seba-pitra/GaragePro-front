@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 import { toast } from 'react-toastify';
 import type { AvailableTime, Reservation, ReserveDto } from '@/interfaces/parking.interface';
 import type { Slot } from '@/interfaces/slot.interface';
@@ -16,30 +15,22 @@ interface State {
 
 const parkingService = new ParkingService();
 
-export const useParkingStore = create<State>()(
-  persist(
-    (set) => ({
-      reservation: null,
-      times: [],
-      slots: [],
+export const useParkingStore = create<State>()((set) => ({
+  reservation: null,
+  times: [],
+  slots: [],
 
-      reserve: async (reserveDto: ReserveDto) => {
-        const newReservation = await parkingService.reserve(reserveDto);
-        const reservation = getPropsByCamelCase(newReservation);
+  reserve: async (reserveDto: ReserveDto) => {
+    const newReservation = await parkingService.reserve(reserveDto);
+    const reservation = getPropsByCamelCase(newReservation) as Reservation;
 
-        set({ reservation });
+    set({ reservation });
 
-        toast('Reserve created', { type: 'success', theme: 'dark', position: 'bottom-left' });
-      },
+    toast('Reserve created', { type: 'success', theme: 'dark', position: 'bottom-left' });
+  },
 
-      getAvailableTimes: async (date: string, selectedSlot: string) => {
-        const times = await parkingService.getAvailableTimes(date, selectedSlot);
-        set({ times });
-      },
-    }),
-
-    {
-      name: 'parking',
-    },
-  ),
-);
+  getAvailableTimes: async (date: string, selectedSlot: string) => {
+    const times = await parkingService.getAvailableTimes(date, selectedSlot);
+    set({ times });
+  },
+}));

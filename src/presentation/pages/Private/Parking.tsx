@@ -34,7 +34,7 @@ const ReserveSlot = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="min-h-screen bg-[#2e3a47] text-white flex flex-col items-center px-4 py-8"
+      className="mt-16 min-h-screen   text-white flex flex-col items-center px-4 py-8"
     >
       {/* Calendar */}
       <div className="mb-8">
@@ -77,7 +77,7 @@ const ReserveSlot = () => {
       </div>
 
       {/* Button */}
-      {selectedSlot && selectedTime.start && <Button content="Reserve" />}
+      {selectedSlot && selectedTime.start && <Button className="mt-8 p-2">Reserve</Button>}
     </form>
   );
 };
